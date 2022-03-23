@@ -3,6 +3,7 @@ package com.example.ItemsAPI.controller;
 import com.example.ItemsAPI.controller.dto.ItemDto;
 import com.example.ItemsAPI.model.Item;
 //import com.example.ItemsAPI.repository.ItemRepository;
+import com.example.ItemsAPI.repository.ItemRepository;
 import com.example.ItemsAPI.service.ItemService;
 //import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.web.bind.annotation.*;
@@ -11,63 +12,66 @@ import com.example.ItemsAPI.service.ItemService;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping( "/item" )
 public class ItemController
 {
 
-    final ItemService itemService;
+
+@Autowired
+private ItemService itemService;
 
 
-    public ItemController( @Autowired ItemService itemService )
-    {
-        this.itemService = itemService;
-    }
-
+    @CrossOrigin
     @GetMapping( "/all" )
     public Iterable<Item> getItems()
     {
         return itemService.all();
     }
 
+    @CrossOrigin
     @PostMapping
     public Item save( @RequestBody ItemDto itemDto )
     {
         return itemService.save(new Item( itemDto ) );
     }
 
+    @CrossOrigin
     @GetMapping( "/{id}" )
     public Item findItemById( @PathVariable Integer id )
     {
         return itemService.findById( id );
     }
 
+    @CrossOrigin
     @PutMapping( "/{id}" )
     public Item update( @RequestBody ItemDto itemDto, @PathVariable Integer id )
     {
         Item item = itemService.findById( id );
         item.setName( item.getName() );
+        item.setDate( item.getDate() );
+        item.setItemName( item.getItemName() );
+        item.setItemType( item.getItemType() );
         item.setDescription( item.getDescription() );
-        item.setImageUrl( item.getImageUrl() );
+        item.setReccomend( item.getReccomend() );
+        item.setImg( item.getImg() );
         return itemService.save( item );
     }
-
+    @CrossOrigin
     @DeleteMapping( "/{id}" )
     public void delete( @PathVariable Integer id )
     {
         itemService.delete( id );
     }
 
+
+
+
 }
+
+
 
 
 

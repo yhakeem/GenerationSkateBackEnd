@@ -5,6 +5,7 @@ import com.example.ItemsAPI.repository.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -12,7 +13,7 @@ public class ItemServiceMySQL implements ItemService
 {
     private final ItemRepository itemRepository;
 
-    public ItemServiceMySQL(@Autowired ItemRepository itemRepository )
+    public ItemServiceMySQL(ItemRepository itemRepository )
     {
         this.itemRepository = itemRepository;
     }
@@ -20,28 +21,28 @@ public class ItemServiceMySQL implements ItemService
     @Override
     public Item save(Item item )
     {
-        //TODO implement this method
-        return null;
+        return itemRepository.save(item);
     }
 
     @Override
-    public void delete( int itemId )
+    public void delete(Integer itemId )
     {
-        //TODO implement this method
+        itemRepository.deleteById(itemId );
     }
 
     @Override
     public List<Item> all()
     {
-        //TODO implement this method
-        return null;
+        List<Item> result = new ArrayList<>();
+        itemRepository.findAll().forEach(result::add);
+        return result;
     }
 
     @Override
-    public Item findById( int itemId )
+    public Item findById(Integer itemId )
     {
-        //TODO implement this method
-        return null;
+        return itemRepository.findById(itemId).orElseThrow(()-> new IllegalStateException("Item not found, try again."));
+
     }
 }
 

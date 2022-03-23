@@ -9,10 +9,10 @@ public interface ItemService
 
     Item save(Item item );
 
-    void delete( int itemId );
+    void delete( Integer itemId );
 
     List<Item> all();
 
-    Item findById( int itemId );
+    Item findById( Integer itemId );
 
 }
