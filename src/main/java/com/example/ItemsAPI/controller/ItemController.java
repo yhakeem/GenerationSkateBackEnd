@@ -50,13 +50,14 @@ private ItemService itemService;
     public Item update( @RequestBody ItemDto itemDto, @PathVariable Integer id )
     {
         Item item = itemService.findById( id );
-        item.setName( item.getName() );
-        item.setDate( item.getDate() );
-        item.setItemName( item.getItemName() );
-        item.setItemType( item.getItemType() );
-        item.setDescription( item.getDescription() );
-        item.setReccomend( item.getReccomend() );
-        item.setImg( item.getImg() );
+        item.setName( itemDto.getName() );
+        item.setDate( itemDto.getDate() );
+        item.setItemName( itemDto.getItemName() );
+        item.setItemType( itemDto.getItemType() );
+        item.setDescription( itemDto.getDescription() );
+        item.setReccomend( itemDto.getReccomend() );
+        item.setFrequency( itemDto.getFrequency() );
+        item.setImg( itemDto.getImg() );
         return itemService.save( item );
     }
     @CrossOrigin

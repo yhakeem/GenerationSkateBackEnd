@@ -21,6 +21,7 @@ public class Item
     private String itemType;
     private String description;
     private String reccomend;
+    private String frequency;
     private String img;
 
 //will have to change this to match your fields.
@@ -32,6 +33,7 @@ public Item(ItemDto itemDto){
     this.itemType=itemDto.getItemType();
     this.description=itemDto.getDescription();
     this.reccomend=itemDto.getReccomend();
+    this.frequency=itemDto.getFrequency();
    this.img=itemDto.getImg();
 }
 //blank constructor?
@@ -44,6 +46,14 @@ public Item(){};
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getFrequency() {
+        return frequency;
+    }
+
+    public void setFrequency(String frequency) {
+        this.frequency = frequency;
     }
 
     public String getName() {

@@ -9,13 +9,14 @@ public class ItemDto
     private String itemType;
     private String description;
     private String reccomend;
+    private String frequency;
     private String img;
 
 
 
 
 
-    public ItemDto(String name,String date, String itemName, String itemType, String description, String reccomend, String img )
+    public ItemDto(String name,String date, String itemName, String itemType, String description, String reccomend,String frequency, String img )
     {
         this.name = name;
         this.date = date;
@@ -23,7 +24,16 @@ public class ItemDto
         this.itemType = itemType;
         this.description = description;
         this.reccomend = reccomend;
+        this.frequency = frequency;
         this.img = img;
+    }
+
+    public String getFrequency() {
+        return frequency;
+    }
+
+    public void setFrequency(String frequency) {
+        this.frequency = frequency;
     }
 
     public String getName() {
